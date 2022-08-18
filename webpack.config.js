@@ -1,14 +1,25 @@
+// Plugins and Path
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
+// Rules
 const rulesForCss = {
     test: /\.css$/,
     use: ['style-loader', 'css-loader']
 }
 
-const rules = [rulesForCss];
+const rulesForJs = {
+    test: /\.js$/,
+    exclude: /node_modules/,
+    loader: 'babel-loader',
+    options: {
+      presets: ['@babel/preset-env']
+    }
+}
 
+const rules = [rulesForJs, rulesForCss];
+
+// Module exports
 module.exports = {
     entry: {
         bundle: './src/js/index.js'

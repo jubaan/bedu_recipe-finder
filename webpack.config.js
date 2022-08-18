@@ -17,7 +17,17 @@ const rulesForJs = {
     }
 }
 
-const rules = [rulesForJs, rulesForCss];
+const rulesForHtml = {
+    test: /\.html$/i,
+    loader: "html-loader",
+}
+
+const rulesForFiles = {
+    test: /\.(png|svg|jpg|jpeg|gif)$/i,
+    type: 'asset/resource',
+}
+
+const rules = [rulesForHtml, rulesForJs, rulesForCss, rulesForFiles];
 
 // Module exports
 module.exports = {
@@ -26,7 +36,8 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js'
+        filename: '[name].js',
+        clean: true
     },
     plugins: [
         new HtmlWebpackPlugin({

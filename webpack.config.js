@@ -1,6 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+
+const rulesForCss = {
+    test: /\.css$/,
+    use: ['style-loader', 'css-loader']
+}
+
+const rules = [rulesForCss];
+
 module.exports = {
     entry: {
         bundle: './src/js/index.js'
@@ -22,5 +30,8 @@ module.exports = {
         },
         port: 3000,
         open: true
+    },
+    module: {
+        rules
     }
 }

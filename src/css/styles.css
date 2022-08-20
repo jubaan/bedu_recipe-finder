@@ -1,0 +1,6 @@
+@import './normalize.css';
+@import './global.css';
+
+body {
+  background-color: var(--primary-color); /*using a css variable*/
+}

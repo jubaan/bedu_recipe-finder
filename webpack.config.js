@@ -27,7 +27,12 @@ const rulesForFiles = {
     type: 'asset/resource',
 }
 
-const rules = [rulesForHtml, rulesForJs, rulesForCss, rulesForFiles];
+const rulesForFonts = {
+    test: /\.(woff|woff2|eot|ttf|otf)$/i,
+    type: 'asset/resource',
+}
+
+const rules = [rulesForHtml, rulesForJs, rulesForCss, rulesForFiles, rulesForFonts];
 
 // Module exports
 module.exports = {

@@ -1,1 +1,1 @@
-import '../css/styles.css'; //import the initial css file
+import '../css/global.css'; //import the global css file

@@ -1,4 +1,4 @@
-import '../css/global.css'; //import the global css file
+import '../css/styles.css'; //import the css file
 import logo from '../assets/images/logoRecipeEasy.svg'; //import the logo image
 
 const header = document.querySelector('header');

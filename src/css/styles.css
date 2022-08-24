@@ -1,0 +1,7 @@
+@import './normalize.css';
+@import './global.css';
+
+body {
+  font-family: 'Nunito', sans-serif; /* Using Nunito font family*/
+  background-color: var(--primary-color); /*using a css variable*/
+}

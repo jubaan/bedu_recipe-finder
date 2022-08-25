@@ -8,11 +8,29 @@
 </head>
 <body>
     <header> <!--START OF NAV BAR-->
-        <img src="./assets/images/logoRecipeEasy.svg" alt="Logo">
-        <h1>Recipe Easy</h1>
-        <input type="text" name="search-bar" value="I want to eat..">
-        <button>Search</button>
-        <button>Can´t decide?</button>
+        <nav class="navbar">
+         <div class="logo">
+             <figure>
+               <img src="./assets/images/logoRecipeEasy.svg" alt="Logo">
+             </figure>
+         </div>
+         <div class="user-nav">
+             <div class="search-bar">
+                 <input type="text" placeholder="I want to eat...">
+                 <button class="btn-search">
+                  <img src="./assets/images/search-icons.svg" alt="Logo">
+                     <p>Search</p>
+                 </button>
+             </div>
+             <div class="random">
+             <button class="btn-random">
+               <img src="./assets/images/random-icon.svg" alt="Logo">
+                 <p>Can't decide?</p>
+             </button>
+             <p class="random-recipe">Get a random recipe</p>
+             </div>
+         </div>
+     </nav>
      </header> <!--END OF NAV BAR-->
 
 

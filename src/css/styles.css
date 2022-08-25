@@ -1,7 +1,114 @@
 @import './normalize.css';
 @import './global.css';
 
-body {
-  font-family: 'Nunito', sans-serif; /* Using Nunito font family*/
-  background-color: var(--primary-color); /*using a css variable*/
+.navbar{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  padding: 20px;
+  max-width: 1280px;
+  background: var(--primary-color);
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+}
+
+.logo img{
+ max-width: 200px;
+ height: 100%;
+ object-fit: cover;
+}
+
+.user-nav{
+  display: flex;
+}
+
+.user-nav img{
+  fill: var(--white-color);
+  width: 30px;
+}
+
+.user-nav button{
+  color: var(--white-color);
+  display: flex;
+  align-items: center;
+  height: 32px;
+  border-radius: 5px;
+  border-style: none;
+  position: relative;
+}
+
+.search-bar input{
+  border-radius: 5px;
+  border-style: none;
+  position: absolute;
+  width: 360px;
+  min-width: 200px;
+  height: 30px;
+}
+
+.btn-search{
+  margin-left: 275px;
+  background: var(--tertiary-color);
+}
+
+.btn-random{
+  margin-left: 10px;
+  background: var(--secondary-color);
+}
+
+.random-recipe{
+  margin:auto;
+  display: flex;
+  justify-content: center;
+  visibility: hidden;
+  color:var(--dark-gray-color);
+  font-size: .8rem;
+}
+
+.btn-random:hover + .random-recipe{
+  visibility: visible ;
+}
+
+
+/*Mobile*/
+@media (min-width: 320px) and (max-width: 450px){ 
+  .navbar {
+      display: block;
+      width: 100%;
+      padding: 2px;
+      align-items: center;
+  }
+
+  .logo figure{
+      margin: auto;
+      width: 45%;
+  }
+
+  .logo img{
+      width: 100%;
+  }
+
+  .search-bar input{
+      width: 75%;
+      position: relative;
+      top: 1rem;
+  }
+
+  .btn-search{
+      margin-left: 84%;
+      bottom: 1rem;
+  }
+
+  .user-nav {
+      align-items: center;
+      justify-content: center;
+  }
+
+  .user-nav p{
+      display: none;
+  }
+
+  .btn-random{
+    margin-left: 1rem;
+}
 }

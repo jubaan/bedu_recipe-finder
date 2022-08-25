@@ -2,6 +2,124 @@
 @import './global.css';
 
 body {
-  font-family: 'Nunito', sans-serif; /* Using Nunito font family*/
-  background-color: var(--primary-color); /*using a css variable*/
+  background-color: var(--light-blue-color);
+}
+
+.meals {
+  max-width: 774px;
+  margin: auto;
+}
+
+.title {
+  font-family: 'Permanent Marker', cursive;
+  height: 35px;
+  font-size: 24px;
+  color: var (--dark-gray-color);
+  font-weight: 400;
+  line-height: 35px;
+  margin-left: 10px;
+}
+
+.meals-card {
+  display: grid;
+  grid-template: repeat(2, 50%) / repeat(3, 33.3%);
+  align-items: center;
+  }
+
+.meals-content {
+  background-color: var(--white-color);
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 5px 5px var(--light-gray-color);
+}
+
+.meals-content p {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 14px;
+  color: var(--black-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+figure {
+  margin: 0;
+}
+
+.meals-content img {
+  width: 100%;
+}
+
+.slogan-container {
+  max-width: 774px;
+  margin: auto;
+}
+
+.slogan {
+  height: 119px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(155, 155, 155, 0.7)), url(https://www.themealdb.com/images/media/meals/t8mn9g1560460231.jpg) no-repeat; 
+  background-position: center center;
+  border: solid var(--white-color) 4px;
+}
+
+
+.slogan p {
+  color: var(--white-color);
+  font-size: 36px;
+  font-family: 'Neucha', cursive;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+footer {
+  margin-top: 3%;
+  background-color: var(--primary-color);
+  height: 113px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-components img {
+  height: 47px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.footer-components p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+
+
+@media (max-width:320px) {
+  .title {
+      font-size: 14px;
+  }
+
+  .meals-content {
+      margin: 20px;
+    padding-bottom: 0;    
+  }
+  .meals-card {
+      display:flex;
+      flex-direction: column;
+  }
+
+  .slogan p {
+      font-size: 24px;
+  }
+
 }

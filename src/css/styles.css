@@ -1,114 +1,93 @@
 @import './normalize.css';
 @import './global.css';
 
-.navbar{
-  display: flex;
-  justify-content:center;
-  align-items: center;
-  padding: 20px;
-  max-width: 1280px;
+/* ------------------------- NAV BAR STYLES ------------------------- */
+header {
   background: var(--primary-color);
+}
+
+.navbar {
   font-family: 'Nunito', sans-serif;
   font-size: 1rem;
-}
-
-.logo img{
- max-width: 200px;
- height: 100%;
- object-fit: cover;
-}
-
-.user-nav{
-  display: flex;
-}
-
-.user-nav img{
-  fill: var(--white-color);
-  width: 30px;
-}
-
-.user-nav button{
-  color: var(--white-color);
+  max-width: 744px;
+  margin: auto;
+  padding: 20px 0;
   display: flex;
   align-items: center;
-  height: 32px;
-  border-radius: 5px;
-  border-style: none;
-  position: relative;
+  justify-content: space-between;
 }
 
-.search-bar input{
-  border-radius: 5px;
-  border-style: none;
-  position: absolute;
-  width: 360px;
-  min-width: 200px;
-  height: 30px;
+.navbar-item {
+  margin: 5px;
 }
 
-.btn-search{
-  margin-left: 275px;
-  background: var(--tertiary-color);
+.logo {
+  width: 25%;
 }
 
-.btn-random{
-  margin-left: 10px;
+.navbar-btns,
+.search-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar-btn {
+  color: var(--white-color);
   background: var(--secondary-color);
+  height: 34px;
+  border-radius: 5px;
+  border-style: none;
+  display: flex;
+  align-items: center;
 }
 
-.random-recipe{
-  margin:auto;
+.navbar-icon {
+  fill: var(--white-color);
+  height: 100%;
+}
+
+.search-bar input {
+  border-radius: 5px 0 0 5px;
+  border-style: none;
+  width: 300px;
+  height: 32px;
+}
+
+.btn-search {
+  border-radius: 0 5px 5px 0;
+}
+
+.random-description {
+  margin: auto;
   display: flex;
   justify-content: center;
   visibility: hidden;
-  color:var(--dark-gray-color);
+  color: var(--dark-gray-color);
   font-size: .8rem;
 }
 
-.btn-random:hover + .random-recipe{
-  visibility: visible ;
+.btn-random:hover+.random-description {
+  visibility: visible;
 }
 
 
-/*Mobile*/
-@media (min-width: 320px) and (max-width: 450px){ 
+/* Mobile */
+@media (max-width: 744px) {
   .navbar {
-      display: block;
-      width: 100%;
-      padding: 2px;
-      align-items: center;
+    display: flex;
+    flex-direction: column;
   }
 
-  .logo figure{
-      margin: auto;
-      width: 45%;
+  .logo {
+    width: 50%;
   }
 
-  .logo img{
-      width: 100%;
+  .search-bar input {
+    width: 100%;
   }
 
-  .search-bar input{
-      width: 75%;
-      position: relative;
-      top: 1rem;
+  .random-text,
+  .random-description {
+    display: none;
   }
-
-  .btn-search{
-      margin-left: 84%;
-      bottom: 1rem;
-  }
-
-  .user-nav {
-      align-items: center;
-      justify-content: center;
-  }
-
-  .user-nav p{
-      display: none;
-  }
-
-  .btn-random{
-    margin-left: 1rem;
-}
 }

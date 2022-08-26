@@ -1,50 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe finder</title>
 </head>
+
 <body>
-    <header> <!--START OF NAV BAR-->
+    <header>
+        <!--START OF NAV BAR-->
         <nav class="navbar">
-         <div class="logo">
-             <figure>
-               <img src="./assets/images/logoRecipeEasy.svg" alt="Logo">
-             </figure>
-         </div>
-         <div class="user-nav">
-             <div class="search-bar">
-                 <input type="text" placeholder="I want to eat...">
-                 <button class="btn-search">
-                  <img src="./assets/images/search-icons.svg" alt="Logo">
-                     <p>Search</p>
-                 </button>
-             </div>
-             <div class="random">
-             <button class="btn-random">
-               <img src="./assets/images/random-icon.svg" alt="Logo">
-                 <p>Can't decide?</p>
-             </button>
-             <p class="random-recipe">Get a random recipe</p>
-             </div>
-         </div>
-     </nav>
-     </header> <!--END OF NAV BAR-->
+            <img class="navbar-item logo" id="logo" alt="Logo">
+
+            <section class="navbar-btns">
+                <div class="navbar-item search-bar">
+                    <input type="text" placeholder="I want to eat...">
+                    <button class="navbar-btn btn-search">
+                        <img class="navbar-icon" id="searchIcon" alt="search icon">
+                    </button>
+                </div>
+
+                <div class="navbar-item random-recipe">
+                    <button class="navbar-btn btn-random">
+                        <img class="navbar-icon" id="randomIcon" alt="random icon">
+                        <p class="random-text">Can't decide?</p>
+                    </button>
+                    <p class="random-description">Get a random recipe</p>
+                </div>
+            </section>
+        </nav>
+        <!--END OF NAV BAR-->
+    </header>
 
 
-     <main> <!--START OF MAIN SECTION-->
+    <main>
+        <!--START OF MAIN SECTION-->
         <h1>Categories</h1>
 
         <h1>Meals</h1>
-     </main> <!--END OF MAIN SECTION-->
+    </main>
+    <!--END OF MAIN SECTION-->
 
 
-     <footer> <!--START OF FOOTER-->
+    <footer>
+        <!--START OF FOOTER-->
         <h1>Recipe Easy</h1>
         <p>Copyright © 2022 Recipe Easy.</p>
-     </footer> <!--END OF FOOTER-->
+    </footer>
+    <!--END OF FOOTER-->
 
 </body>
+
 </html>

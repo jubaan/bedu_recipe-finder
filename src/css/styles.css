@@ -179,7 +179,7 @@ figure {
   justify-content: center;
   background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(155, 155, 155, 0.7)), url(https://www.themealdb.com/images/media/meals/t8mn9g1560460231.jpg) no-repeat; 
   background-position: center center;
-  border: solid white 4px;
+  border: solid var(--white-color) 4px;
 }
 
 .slogan p {
@@ -195,13 +195,21 @@ figure {
 footer {
   margin-top: 3%;
   background-color: var(--primary-color);
-  font-family: 'Neucha', cursive;
   height: 113px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.footer-components img {
+  height: 47px;
+  font-family: 'Neucha', cursive; 
+}
+
+.footer-components p {
+  font-size: 12px;
 }
 
 /* ------------------------- MEDIA QUERIES ------------------------- */
@@ -223,14 +231,6 @@ footer {
   .random-text,
   .random-description {
     display: none;
-  }
-
-  .meals-card p {
-    font-size: 18px;
-  }
-
-  .slogan p {
-    font-size: 22px;
   }
 }
 
@@ -275,5 +275,13 @@ footer {
   .meals-content {
     display: flex;
     flex-direction: column;
+  }
+ 
+  .meals-card p{
+    font-size: 18px;
+  }
+
+  .slogan p {
+    font-size: 22px;
   }
 }

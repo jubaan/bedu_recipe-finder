@@ -6,8 +6,13 @@ import randomImg from '../assets/images/random-icon.svg';
 const imageLogo = document.getElementById('logo')
 imageLogo.src = logo;
 
+const footerLogo = document.getElementById('footer-logo');
+footerLogo.src = logo;
+
 const searchIcon = document.getElementById('searchIcon')
 searchIcon.src = searchImg;
 
 const randomIcon = document.getElementById('randomIcon')
 randomIcon.src = randomImg;
+
+

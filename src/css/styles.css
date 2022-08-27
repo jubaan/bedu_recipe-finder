@@ -2,6 +2,114 @@
 @import './global.css';
 
 /* ------------------------- NAV BAR STYLES ------------------------- */
+
+body {
+  background-color: var(--light-blue-color);
+}
+
+/* MEALS STYLES */
+figure {
+  margin: 0;
+}
+
+.meals {
+  max-width: 774px;
+  margin: auto;
+}
+
+.title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 24px;
+  color: var(--dark-gray-color);
+  margin-left: 10px;
+}
+
+.meals-content {
+  display: grid;
+  grid-template: auto / repeat(3, 33.3%);
+  align-items: center;
+}
+
+.meals-card {
+  background-color: var(--white-color);
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 5px 5px var(--light-gray-color);
+}
+
+.meals-card p {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 14px;
+  color: var(--black-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.meals-card img {
+  width: 100%;
+}
+
+/*END OF MEALS STYLES*/
+
+/*SLOGAN STYES*/
+.slogan-container {
+  max-width: 774px;
+  margin: auto;
+}
+
+.slogan {
+  height: 119px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  grid-template: auto / repeat(3, 33.3%);
+  align-items: center;
+}
+
+;
+border: solid var(--white-color) 4px;
+}
+
+.slogan p {
+  color: var(--white-color);
+  font-size: 36px;
+  font-family: 'Neucha', cursive;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*END OF SLOGAN STYLES*/
+
+/*FOOTER STYLES*/
+footer {
+  margin-top: 3%;
+  background-color: var(--primary-color);
+  height: 113px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-components img {
+  height: 47px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.footer-components p {
+  font-style: normal;
+  font-size: 12px;
+}
+
+/*END OF FOOTER STYLES*/
+
 header {
   background: var(--primary-color);
 }
@@ -90,4 +198,29 @@ header {
   .random-description {
     display: none;
   }
+
+  .meals-card p {
+    font-size: 18px;
+  }
+
+  .slogan p {
+    font-size: 22px;
+  }
 }
+
+@media (max-width:320px) {
+  .title {
+    font-size: 20px;
+    margin-left: 22px;
+    margin-bottom: 0px;
+  }
+
+  .meals-card {
+    margin: 20px;
+  }
+
+  .meals-content {
+    display: grid;
+    grid-template: auto / repeat(3, 33.3%);
+    align-items: center;
+  }

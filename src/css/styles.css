@@ -162,6 +162,7 @@ figure {
 
 .meals-card img {
   width: 100%;
+  object-fit: cover;
 }
 
 /* ------------------------- SLOGAN STYLES ------------------------- */
@@ -176,9 +177,9 @@ figure {
   display: flex;
   align-items: center;
   justify-content: center;
-  display: grid;
-  grid-template: auto / repeat(3, 33.3%);
-  align-items: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(155, 155, 155, 0.7)), url(https://www.themealdb.com/images/media/meals/t8mn9g1560460231.jpg) no-repeat; 
+  background-position: center center;
+  border: solid white 4px;
 }
 
 .slogan p {

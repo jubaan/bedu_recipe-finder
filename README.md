@@ -4,7 +4,7 @@
 ##  Equipo
 - Alma Lovera
 - Francisco Solís
-- Julio Añoveros
+- [Julio Añoveros](https://github.com/jubaan)
 - Marcela Contreras
 - Maribel Melendez
 
@@ -19,3 +19,9 @@ Esta página web:
 ##  Referencias
 - The free Meal [API](https://www.themealdb.com/api.php)
 - Diseño en [Figma](https://www.figma.com/file/kiAo9w40NfrFrMelgHCe76/bedu_recipe-finder?node-id=0%3A1)
+
+## Como correr la aplicacion
+1. Clonar el repositorio `git@github.com:jubaan/bedu_recipe-finder.git`
+2. Cambiar de directorio `cd bedu_recipe-finder`
+3. Instalar dependencias `npm install`
+4. Correr la aplicacion `npm start`

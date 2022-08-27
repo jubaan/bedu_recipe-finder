@@ -71,10 +71,6 @@ figure {
   align-items: center;
 }
 
-;
-border: solid var(--white-color) 4px;
-}
-
 .slogan p {
   color: var(--white-color);
   font-size: 36px;
@@ -224,3 +220,4 @@ header {
     grid-template: auto / repeat(3, 33.3%);
     align-items: center;
   }
+}

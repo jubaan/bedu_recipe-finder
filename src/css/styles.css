@@ -7,6 +7,9 @@ body {
   background-color: var(--light-blue-color);
 }
 
+.wrapper {
+  min-width: 320px;
+}
 
 /* ------------------------- HEADER STYLES ------------------------- */
 header {
@@ -16,8 +19,9 @@ header {
 .navbar {
   font-family: 'Nunito', sans-serif;
   font-size: 1rem;
-  max-width: 744px;
-  margin: auto;
+  max-width: 1000px;
+  width: 90%;
+  margin: 0 auto;
   padding: 20px 0;
   display: flex;
   align-items: center;
@@ -28,14 +32,25 @@ header {
   margin: 5px;
 }
 
-.logo {
+.navbar figure {
   width: 25%;
+  min-width: 200px;
+  margin: 0;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
 }
 
 .navbar-btns,
 .search-bar {
   display: flex;
   flex-direction: row;
+}
+
+.navbar-btns {
+  align-items: center;
 }
 
 .navbar-btn {
@@ -46,6 +61,11 @@ header {
   border-style: none;
   display: flex;
   align-items: center;
+  cursor: pointer;
+}
+
+.random-text {
+  margin: 0;
 }
 
 .navbar-icon {
@@ -57,30 +77,18 @@ header {
   border-radius: 5px 0 0 5px;
   border-style: none;
   width: 300px;
-  height: 32px;
+  padding: 0 8px;
 }
 
 .btn-search {
   border-radius: 0 5px 5px 0;
 }
 
-.random-description {
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  visibility: hidden;
-  color: var(--dark-gray-color);
-  font-size: .8rem;
-}
-
-.btn-random:hover+.random-description {
-  visibility: visible;
-}
-
 /* ---------------------------- CATEGORIES STYLE ---------------------------- */
 .categories-section {
-  max-width: 774px;
-  margin: auto;
+  width: 85%;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .category-card-container {
@@ -97,6 +105,7 @@ header {
   background-color: #E64848;
   border-radius: 5px;
   box-shadow: 0 5px 5px var(--light-gray-color);
+  cursor: pointer;
 }
 
 .category-card img {
@@ -125,8 +134,10 @@ figure {
 }
 
 .meals {
-  max-width: 774px;
-  margin: auto;
+  width: 85%;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 30px;
 }
 
 .title {
@@ -148,6 +159,7 @@ figure {
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 5px 5px var(--light-gray-color);
+  cursor: pointer;
 }
 
 .meals-card p {
@@ -167,8 +179,9 @@ figure {
 
 /* ------------------------- SLOGAN STYLES ------------------------- */
 .slogan-container {
-  max-width: 774px;
-  margin: auto;
+  max-width: 1000px;
+  width: 85%;
+  margin: 0 auto;
 }
 
 .slogan {
@@ -177,8 +190,9 @@ figure {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(155, 155, 155, 0.7)), url(https://www.themealdb.com/images/media/meals/t8mn9g1560460231.jpg) no-repeat; 
+  background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(155, 155, 155, 0.7)), url(https://www.themealdb.com/images/media/meals/t8mn9g1560460231.jpg) no-repeat;
   background-position: center center;
+  background-size: cover;
   border: solid var(--white-color) 4px;
 }
 
@@ -193,7 +207,7 @@ figure {
 
 /* ------------------------- FOOTER STYLES ------------------------- */
 footer {
-  margin-top: 3%;
+  margin-top: 8%;
   background-color: var(--primary-color);
   height: 113px;
   width: 100%;
@@ -203,39 +217,35 @@ footer {
   justify-content: center;
 }
 
-.footer-components img {
+footer img {
   height: 47px;
-  font-family: 'Neucha', cursive; 
 }
 
-.footer-components p {
+footer p {
   font-size: 12px;
+  font-family: 'Neucha', cursive;
 }
 
 /* ------------------------- MEDIA QUERIES ------------------------- */
 /* Mobile */
-@media (max-width: 744px) {
+@media (max-width: 768px) {
+  /* NavBar */
   .navbar {
-    display: flex;
     flex-direction: column;
   }
 
-  .logo {
-    width: 50%;
-  }
-
-  .search-bar input {
-    width: 100%;
-  }
-
-  .random-text,
-  .random-description {
+  .random-text {
     display: none;
+  }
+
+  /* Meals */
+  .meals-content {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 /* If width is equal or less than 500px apply these styles */
-@media (max-width:500px) {
+@media (max-width: 500px) {
 
   /* Slider */
   .category-card-container {
@@ -259,24 +269,26 @@ footer {
   .categories-btn {
     display: none;
   }
-}
 
-@media (max-width:320px) {
+  .search-bar input {
+    width: 100%;
+  }
+
   .title {
     font-size: 20px;
     margin-left: 22px;
     margin-bottom: 0px;
   }
 
-  .meals-card {
-    margin: 20px;
-  }
-
   .meals-content {
     display: flex;
     flex-direction: column;
   }
- 
+
+  .meals-card {
+    margin: 20px;
+  }
+
   .meals-card p{
     font-size: 18px;
   }
@@ -285,3 +297,4 @@ footer {
     font-size: 22px;
   }
 }
+

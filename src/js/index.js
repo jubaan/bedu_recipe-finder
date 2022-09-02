@@ -4,7 +4,7 @@ import searchImg from '../assets/images/search-icons.svg'; //import the search i
 import randomImg from '../assets/images/random-icon.svg';
 
 import { search } from './search.js';
-
+import { renderCategories } from './category';
 
 const imageLogo = document.getElementById('logo')
 imageLogo.src = logo;
@@ -28,38 +28,5 @@ buttonToSearch.addEventListener('click', () => {
   search(textToSearch);
 });
 
-
-// CATEGORIES SECTON
-const API = "https://www.themealdb.com/api/json/v1/1/categories.php";
-const categorySection = document.querySelector("#categories-container");
-
-function getDataInJson(url) {
-  return fetch(API)
-    .then((respuesta) => respuesta.json())
-    .catch((error) => console.log(error));
-}
-
-function createCategory(category) {
-  return `
-  <div class="category-card">
-    <img src="${category.strCategoryThumb}" alt="${category.strCategory}">
-    <p>${category.strCategory}</p>
-  </div>
-  `;
-}
-
-async function renderCategories() {
-  const data = await getDataInJson(API);
-
-  const categoriesHtml = data.categories.map((item) => {
-    return createCategory(item);
-  });
-
-  const container = document.createElement("div");
-  container.classList.add("category-card-container");
-  container.innerHTML = categoriesHtml.join("");
-
-  categorySection.appendChild(container);
-}
-
-renderCategories();
+// Get gategories
+renderCategories()

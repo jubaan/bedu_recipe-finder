@@ -2,11 +2,11 @@
 ¡Hola! Les presentamos el sitio web **Recipe finder**, esta proyecto muestra una serie de recetas de acuerdo a la búsqueda de los usuarios.
 
 ##  Equipo
-- Alma Lovera
-- Francisco Solís
+- [Alma Lovera](https://github.com/almalst)
+- [Francisco Solís](https://github.com/francisco-solis99)
 - [Julio Añoveros](https://github.com/jubaan)
-- Marcela Contreras
-- Maribel Melendez
+- [Marcela Contreras](https://github.com/proxyz100/)
+- [Maribel Melendez](https://github.com/marmelendez)
 
 ##  Descripción
 Esta página web:

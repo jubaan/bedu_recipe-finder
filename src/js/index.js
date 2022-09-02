@@ -22,9 +22,18 @@ randomIcon.src = randomImg;
 // DOM elements
 const inputMeals = document.querySelector('#input-meals');
 const buttonToSearch = document.querySelector('.btn-search');
+const container = document.querySelector('main');
+const defaultLayout = document.querySelector('main').innerHTML;
+
+
 
 buttonToSearch.addEventListener('click', () => {
   const textToSearch = inputMeals.value;
-  search(textToSearch);
+  search(textToSearch, container, defaultLayout);
 });
 
+inputMeals.addEventListener('keydown', (e) => {
+  if (e.key.toLowerCase() !== 'enter') return;
+  const textToSearch = inputMeals.value;
+  search(textToSearch, container, defaultLayout);
+});

@@ -2,13 +2,14 @@ import { API } from './utils.js';
 import { getDataInJson } from './utils.js';
 
 
-export async function search(text) {
+export async function search(text, container, defaultLayout) {
+  renderLoader(container);
   try {
     const searchUrl = `${API.base}${API.search}?s=${text}`;
     const { meals: mealsFound } = await getDataInJson(searchUrl);
     if (!mealsFound) throw new Error('😢');
 
-    renderMealsFound(mealsFound);
+    renderMealsFound(mealsFound, container);
 
   } catch (error) {
     handlerError(error);
@@ -20,13 +21,22 @@ function handlerError(error) {
   console.log(error)
 }
 
-function renderMealsFound(mealsList) {
-  const container = document.querySelector('.meals-content');
-  const mealsHtml = mealsList.map(meal => createMealCard(meal));
-  const fragment = document.createDocumentFragment();
+function renderMealsFound(mealsList, container) {
+  const sectionMeals = document.createElement('section');
+  sectionMeals.classList.add('meals');
+  const titleSection = document.createElement('h2');
+  titleSection.classList.add('title');
+  titleSection.textContent = 'Search Results';
+  const divContainer = document.createElement('div');
+  divContainer.classList.add('meals-content');
 
-  mealsHtml.forEach(mealHtml => fragment.appendChild(mealHtml));
-  container.appendChild(fragment);
+  sectionMeals.append(titleSection, divContainer);
+
+  const mealsHtml = mealsList.map(meal => createMealCard(meal));
+  mealsHtml.forEach(mealHtml => divContainer.appendChild(mealHtml));
+
+  cleanDOM(container);
+  container.appendChild(sectionMeals);
 }
 
 
@@ -37,6 +47,19 @@ function createMealCard(meal) {
   templateCard.querySelector('img').src = strMealThumb;
   templateCard.querySelector('img').alt = strMeal;
   templateCard.querySelector('p').textContent = strMeal;
-  console.log(templateCard);
   return templateCard;
+}
+
+
+function cleanDOM(container) {
+  container.innerHTML = '';
+}
+
+
+function renderLoader(container) {
+  cleanDOM(container);
+  const spanLoader = document.createElement('span');
+  spanLoader.classList.add('loader');
+
+  container.appendChild(spanLoader);
 }

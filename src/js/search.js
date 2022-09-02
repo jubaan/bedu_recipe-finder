@@ -1,6 +1,6 @@
 import { API } from './utils.js';
 import { getDataInJson } from './utils.js';
-
+import backArrowIcon from '../assets/icons/arrow-back.svg';
 
 export async function search(text, container, defaultLayout) {
   renderLoader(container);
@@ -9,7 +9,7 @@ export async function search(text, container, defaultLayout) {
     const { meals: mealsFound } = await getDataInJson(searchUrl);
     if (!mealsFound) throw new Error('😢');
 
-    renderMealsFound(mealsFound, container);
+    renderMealsFound(mealsFound, container, defaultLayout);
 
   } catch (error) {
     handlerError(error);
@@ -21,19 +21,31 @@ function handlerError(error) {
   console.log(error)
 }
 
-function renderMealsFound(mealsList, container) {
+function renderMealsFound(mealsList, container, defaultLayout) {
   const sectionMeals = document.createElement('section');
   sectionMeals.classList.add('meals');
-  const titleSection = document.createElement('h2');
-  titleSection.classList.add('title');
-  titleSection.textContent = 'Search Results';
-  const divContainer = document.createElement('div');
-  divContainer.classList.add('meals-content');
 
-  sectionMeals.append(titleSection, divContainer);
+  const divInfo = document.createElement('div');
+  divInfo.classList.add('meals__results-info');
+  divInfo.innerHTML = `
+    <h2 class="title">Search Results</h2>
+    <button class="meals__back-btn" aria-label="Back to the begin page state">
+      <span>Back</span>
+      <img src="${backArrowIcon}" alt="Back to the default layout"/>
+    </button>
+  `;
+  const divMealsContainer = document.createElement('div');
+  divMealsContainer.classList.add('meals-content');
 
+  sectionMeals.append(divInfo, divMealsContainer);
+
+  // Listener to get back into the initial layout
+  const btnBackLayout = sectionMeals.querySelector('.meals__back-btn');
+  btnBackLayout.addEventListener('click', () => backToDefaultLayout(container, defaultLayout));
+
+  // Add the meals found
   const mealsHtml = mealsList.map(meal => createMealCard(meal));
-  mealsHtml.forEach(mealHtml => divContainer.appendChild(mealHtml));
+  mealsHtml.forEach(mealHtml => divMealsContainer.appendChild(mealHtml));
 
   cleanDOM(container);
   container.appendChild(sectionMeals);
@@ -62,4 +74,10 @@ function renderLoader(container) {
   spanLoader.classList.add('loader');
 
   container.appendChild(spanLoader);
+}
+
+
+function backToDefaultLayout(container, defaultLayout) {
+  cleanDOM(container);
+  container.innerHTML = defaultLayout;
 }

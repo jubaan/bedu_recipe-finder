@@ -4,7 +4,7 @@ import searchImg from '../assets/images/search-icons.svg'; //import the search i
 import randomImg from '../assets/images/random-icon.svg';
 
 import { search } from './search.js';
-
+import { renderCategories } from './category';
 
 const imageLogo = document.getElementById('logo')
 imageLogo.src = logo;
@@ -37,3 +37,5 @@ inputMeals.addEventListener('keydown', (e) => {
   const textToSearch = inputMeals.value;
   search(textToSearch, container, defaultLayout);
 });
+// Get categories
+renderCategories()

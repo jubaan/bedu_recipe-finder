@@ -1,6 +1,7 @@
 import { API } from './utils.js';
 import { getDataInJson } from './utils.js';
 import backArrowIcon from '../assets/icons/arrow-back.svg';
+import { createMealCard } from './utils.js';
 
 export async function search(text, container, defaultLayout) {
   renderLoader(container);
@@ -51,22 +52,9 @@ function renderMealsFound(mealsList, container, defaultLayout) {
   container.appendChild(sectionMeals);
 }
 
-
-function createMealCard(meal) {
-  const templateCard = document.querySelector('.meal').content.querySelector('.meals-card').cloneNode(true);
-  const { strMeal, strMealThumb } = meal;
-
-  templateCard.querySelector('img').src = strMealThumb;
-  templateCard.querySelector('img').alt = strMeal;
-  templateCard.querySelector('p').textContent = strMeal;
-  return templateCard;
-}
-
-
 function cleanDOM(container) {
   container.innerHTML = '';
 }
-
 
 function renderLoader(container) {
   cleanDOM(container);
@@ -75,7 +63,6 @@ function renderLoader(container) {
 
   container.appendChild(spanLoader);
 }
-
 
 function backToDefaultLayout(container, defaultLayout) {
   cleanDOM(container);

@@ -1,6 +1,6 @@
 import { API } from './utils.js';
 import { getDataInJson } from './utils.js';
-
+import { createMealCard } from './utils.js';
 
 export async function search(text) {
   try {
@@ -27,16 +27,4 @@ function renderMealsFound(mealsList) {
 
   mealsHtml.forEach(mealHtml => fragment.appendChild(mealHtml));
   container.appendChild(fragment);
-}
-
-
-function createMealCard(meal) {
-  const templateCard = document.querySelector('.meal').content.querySelector('.meals-card').cloneNode(true);
-  const { strMeal, strMealThumb } = meal;
-
-  templateCard.querySelector('img').src = strMealThumb;
-  templateCard.querySelector('img').alt = strMeal;
-  templateCard.querySelector('p').textContent = strMeal;
-  console.log(templateCard);
-  return templateCard;
 }

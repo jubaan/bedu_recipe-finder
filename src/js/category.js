@@ -5,12 +5,21 @@ import { getDataInJson } from './utils.js';
 const categorySection = document.querySelector("#categories-container");
 
 function createCategory(category) {
-  return `
-  <div class="category-card">
+  const categoryContainer = document.createElement("div");
+  categoryContainer.classList.add("category-card"); 
+  categoryContainer.innerHTML = `
     <img src="${category.strCategoryThumb}" alt="${category.strCategory}">
-    <p>${category.strCategory}</p>
-  </div>
-  `;
+    <p>${category.strCategory}</p>`;
+  
+  categoryContainer.addEventListener("click", ()=> loadCategories(category.strCategory));
+  return categoryContainer; 
+}
+
+async function loadCategories(category){
+  const urlByCategory = `${API.base}${API.filter}?c=${category}`; 
+  const mealsByCategory = await getDataInJson(urlByCategory); 
+  console.log(mealsByCategory); 
+  
 }
 
 export async function renderCategories() {
@@ -23,7 +32,7 @@ export async function renderCategories() {
 
   const container = document.createElement("div");
   container.classList.add("category-card-container");
-  container.innerHTML = categoriesHtml.join("");
+  categoriesHtml.forEach(category => container.appendChild(category));
 
   categorySection.appendChild(container);
 }

@@ -1,17 +1,16 @@
+// ES6 Modules
 import backArrowIcon from '../assets/icons/arrow-back.svg';
-import { API } from './utils.js';
-import { getDataInJson } from './utils.js';
-import { createMealCard } from './utils.js';
+import { API, getDataInJson, createMealCard } from './utils.js';
 import { renderCategories, renderMealsByCategory } from './category.js';
+import Swal from 'sweetalert2';
+
 
 
 export async function search(text, container, defaultLayout) {
-  renderLoader(container);
   try {
+    renderLoader(container);
     const searchUrl = `${API.base}${API.search}?s=${text}`;
     const { meals: mealsFound } = await getDataInJson(searchUrl);
-    if (!mealsFound) throw new Error('😢');
-
     renderMealsFound(mealsFound, container, defaultLayout);
 
   } catch (error) {
@@ -46,9 +45,25 @@ function renderMealsFound(mealsList, container, defaultLayout) {
   const btnBackLayout = sectionMeals.querySelector('.meals__back-btn');
   btnBackLayout.addEventListener('click', () => backToDefaultLayout(container, defaultLayout));
 
-  // Add the meals found
-  const mealsHtml = mealsList.map(meal => createMealCard(meal));
-  mealsHtml.forEach(mealHtml => divMealsContainer.appendChild(mealHtml));
+  // Add the meals found or show a message
+  if (mealsList) {
+    const mealsHtml = mealsList.map(meal => createMealCard(meal));
+    mealsHtml.forEach(mealHtml => divMealsContainer.appendChild(mealHtml));
+  }
+  else {
+    const pMessage = document.createElement('p');
+    pMessage.classList.add('results__message');
+    pMessage.textContent = 'No results found';
+    divMealsContainer.appendChild(pMessage);
+    Swal.fire({
+      title: 'Make sure you are writing well your search',
+      toast: true,
+      position: 'top-end',
+      timer: 2000,
+      icon: 'info',
+      showConfirmButton: false,
+    });
+  }
 
   cleanDOM(container);
   container.appendChild(sectionMeals);

@@ -3,6 +3,8 @@ import '../css/styles.css'; //import the css file
 import logo from '../assets/images/logoRecipeEasy.svg'; //import the logo image
 import searchImg from '../assets/images/search-icons.svg'; //import the search image
 import randomImg from '../assets/images/random-icon.svg';
+import Swal from 'sweetalert2';
+
 
 // import for the js
 import { search } from './search.js';
@@ -30,17 +32,29 @@ const defaultLayout = document.querySelector('main').innerHTML;
 
 
 // Events to search
-buttonToSearch.addEventListener('click', () => {
-  const textToSearch = inputMeals.value;
-  search(textToSearch, container, defaultLayout);
-});
+buttonToSearch.addEventListener('click', handlerSearch)
 
 inputMeals.addEventListener('keydown', (e) => {
   if (e.key.toLowerCase() !== 'enter') return;
-  const textToSearch = inputMeals.value;
-  search(textToSearch, container, defaultLayout);
+  handlerSearch();
 });
 
+
+function handlerSearch() {
+  const textToSearch = inputMeals.value;
+  if (!textToSearch) {
+    Swal.fire({
+      title: 'Search something please',
+      icon: 'info',
+      timer: 2000,
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+    });
+    return;
+  }
+  search(textToSearch, container, defaultLayout);
+}
 
 // Get categories
 renderCategories()

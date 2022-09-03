@@ -2,9 +2,6 @@ import { API } from './utils.js';
 import { getDataInJson } from './utils.js';
 import { createMealCard } from './utils.js';
 
-// CATEGORIES SECTON
-const categorySection = document.querySelector("#categories-container");
-
 function createCategory(category) {
   const categoryContainer = document.createElement("div");
   categoryContainer.classList.add("category-card");
@@ -12,20 +9,20 @@ function createCategory(category) {
     <img src="${category.strCategoryThumb}" alt="${category.strCategory}">
     <p>${category.strCategory}</p>`;
 
-  categoryContainer.addEventListener("click", () => loadCategories(category.strCategory));
+  categoryContainer.addEventListener("click", () => renderMealsByCategory(category.strCategory));
   return categoryContainer;
 }
 
-async function loadCategories(category) {
+export async function renderMealsByCategory(category) {
   const urlByCategory = `${API.base}${API.filter}?c=${category}`;
   const { meals: mealsByCategory } = await getDataInJson(urlByCategory);
   const mealsCategoryHtml = mealsByCategory.map(meal => createMealCard(meal))
+
   const wrapperCategories = document.querySelector(".meals-content");
-  wrapperCategories.innerHTML = "";
   const fragment = document.createDocumentFragment();
   mealsCategoryHtml.forEach(cardMeal => fragment.appendChild(cardMeal));
+  wrapperCategories.innerHTML = "";
   wrapperCategories.appendChild(fragment);
-
 }
 
 export async function renderCategories() {

@@ -2,7 +2,7 @@ import backArrowIcon from '../assets/icons/arrow-back.svg';
 import { API } from './utils.js';
 import { getDataInJson } from './utils.js';
 import { createMealCard } from './utils.js';
-import { renderCategories } from './category.js';
+import { renderCategories, renderMealsByCategory } from './category.js';
 
 
 export async function search(text, container, defaultLayout) {
@@ -70,5 +70,6 @@ function backToDefaultLayout(container, defaultLayout) {
   cleanDOM(container);
   container.innerHTML = defaultLayout;
   renderCategories();
+  renderMealsByCategory('beef');
   document.querySelector('#input-meals').value = '';
 }

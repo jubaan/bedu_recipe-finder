@@ -160,7 +160,6 @@ figure {
 .meals-content {
   display: grid;
   grid-template: auto / repeat(3, 33.3%);
-  align-items: center;
 }
 
 .meals-card {
@@ -318,7 +317,7 @@ footer p {
 
   /* Meals */
   .meals-content {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 50%);
   }
 }
 
@@ -406,6 +405,7 @@ footer p {
   }
 }
 
+/* Skeleton animation */
 .skeleton {
   min-width: 2rem;
   min-height: 2rem;
@@ -422,6 +422,7 @@ footer p {
   }
 }
 
+/* Meals results */
 
 .meals__results-info {
   display: flex;

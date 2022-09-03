@@ -6,7 +6,7 @@ import randomImg from '../assets/images/random-icon.svg';
 
 // import for the js
 import { search } from './search.js';
-import { renderCategories } from './category';
+import { renderCategories, renderMealsByCategory } from './category.js';
 
 // set the images
 const imageLogo = document.getElementById('logo')
@@ -44,3 +44,6 @@ inputMeals.addEventListener('keydown', (e) => {
 
 // Get categories
 renderCategories()
+const initialCategory = 'beff';
+// Render the initial meals
+renderMealsByCategory('beef');

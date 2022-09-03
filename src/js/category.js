@@ -1,5 +1,6 @@
 import { API } from './utils.js';
 import { getDataInJson } from './utils.js';
+import { createMealCard } from './utils.js';
 
 // CATEGORIES SECTON
 const categorySection = document.querySelector("#categories-container");
@@ -17,9 +18,14 @@ function createCategory(category) {
 
 async function loadCategories(category){
   const urlByCategory = `${API.base}${API.filter}?c=${category}`; 
-  const mealsByCategory = await getDataInJson(urlByCategory); 
-  console.log(mealsByCategory); 
-  
+  const {meals: mealsByCategory} = await getDataInJson(urlByCategory); 
+  const mealsCategoryHtml = mealsByCategory.map(meal => createMealCard(meal))
+  const wrapperCategories = document.querySelector(".meals-content");
+  wrapperCategories.innerHTML = ""; 
+  const fragment = document.createDocumentFragment();
+  mealsCategoryHtml.forEach(cardMeal => fragment.appendChild(cardMeal));
+  wrapperCategories.appendChild(fragment);
+
 }
 
 export async function renderCategories() {

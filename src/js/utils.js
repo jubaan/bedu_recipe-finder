@@ -2,7 +2,7 @@ export const API = {
   base: 'https://www.themealdb.com/api/json/v1/1',
   search: '/search.php',
   random: '/random.php',
-  categories: '/categories.php', 
+  categories: '/categories.php',
   filter: '/filter.php'
 }
 
@@ -19,6 +19,5 @@ export function createMealCard(meal) {
   templateCard.querySelector('img').src = strMealThumb;
   templateCard.querySelector('img').alt = strMeal;
   templateCard.querySelector('p').textContent = strMeal;
-  console.log(templateCard);
   return templateCard;
 }

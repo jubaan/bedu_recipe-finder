@@ -20,9 +20,27 @@ export async function renderMealsByCategory(category) {
 
   const wrapperCategories = document.querySelector(".meals-content");
   const fragment = document.createDocumentFragment();
-  mealsCategoryHtml.forEach(cardMeal => fragment.appendChild(cardMeal));
+  mealsCategoryHtml.slice(0, 9).forEach(cardMeal => fragment.appendChild(cardMeal));
   wrapperCategories.innerHTML = "";
   wrapperCategories.appendChild(fragment);
+
+  if (mealsByCategory.slice(9).length) {
+    addLodeMoreBtn(wrapperCategories, mealsCategoryHtml.slice(9));
+  }
+}
+
+function renderMoreMeals(restList, container, event) {
+  event.target.parentElement.remove();
+  const fragment = document.createDocumentFragment();
+  restList.slice(0, 9).forEach(cardMeal => fragment.appendChild(cardMeal));
+  container.appendChild(fragment);
+  if (restList.slice(9).length) addLodeMoreBtn(container, restList.slice(9));
+}
+
+function addLodeMoreBtn(refContainer, restMeals) {
+  const addMoreTemplate = document.querySelector('.meal').content.querySelector('.add__more').cloneNode(true);
+  addMoreTemplate.querySelector('button').addEventListener('click', (event) => renderMoreMeals(restMeals, refContainer, event));
+  refContainer.appendChild(addMoreTemplate);
 }
 
 export async function renderCategories() {

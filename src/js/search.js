@@ -48,7 +48,8 @@ function renderMealsFound(mealsList, container, defaultLayout) {
   // Add the meals found or show a message
   if (mealsList) {
     const mealsHtml = mealsList.map(meal => createMealCard(meal));
-    mealsHtml.forEach(mealHtml => divMealsContainer.appendChild(mealHtml));
+    mealsHtml.slice(0, 9).forEach(mealHtml => divMealsContainer.appendChild(mealHtml));
+    if (mealsHtml.slice(9).length) addLodeMoreBtn(divMealsContainer, mealsHtml.slice(9));
   }
   else {
     const pMessage = document.createElement('p');
@@ -67,6 +68,20 @@ function renderMealsFound(mealsList, container, defaultLayout) {
 
   cleanDOM(container);
   container.appendChild(sectionMeals);
+}
+
+function renderMoreMeals(restList, container, event) {
+  event.target.parentElement.remove();
+  const fragment = document.createDocumentFragment();
+  restList.slice(0, 9).forEach(cardMeal => fragment.appendChild(cardMeal));
+  container.appendChild(fragment);
+  if (restList.slice(9).length) addLodeMoreBtn(container, restList.slice(9));
+}
+
+function addLodeMoreBtn(refContainer, restMeals) {
+  const addMoreTemplate = document.querySelector('.meal').content.querySelector('.add__more').cloneNode(true);
+  addMoreTemplate.querySelector('button').addEventListener('click', (event) => renderMoreMeals(restMeals, refContainer, event));
+  refContainer.appendChild(addMoreTemplate);
 }
 
 function cleanDOM(container) {

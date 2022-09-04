@@ -100,12 +100,13 @@ export const generateModal = (meal) => {
 
   const ingredientContainer =
     mealModalTemplate.querySelector('.ingredients__list');
+
+  ingredientContainer.innerHTML = '';
   getIngredients(meal).forEach((ingredient) => {
     if (
-      ingredient &&
-      ingredient !== ' ' &&
-      ingredient !== '' &&
-      !!ingredient &&
+      ingredient !== ' ' ||
+      ingredient !== '   ' ||
+      ingredient !== '' ||
       (ingredient !== 'null' || ingredient !== 'null null')
     ) {
       let ingredientLi = document.createElement('li');

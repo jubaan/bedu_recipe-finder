@@ -484,7 +484,7 @@ footer p {
   transition: all ease-in 250ms;
 }
 
-
+/* Message results not found */
 .results__message {
   position: absolute;
   top: 50%;
@@ -492,4 +492,39 @@ footer p {
   transform: translate(-50%,-50%);
   font-family: 'Nunito', sans-serif;
   font-size: 1.6rem;
+}
+
+/* Load More */
+.add__more {
+  margin-top: 10px;
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+}
+
+.add__more-btn {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 0;
+  cursor: pointer;
+}
+
+.add__more-btn span {
+  font-family: 'Nunito', sans-serif;
+}
+
+.add__more-btn img {
+  max-width: 100%;
+  width: 50%;
+  animation: jump infinite alternate 1000ms;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }

@@ -1,6 +1,4 @@
-import { API } from './utils.js';
-import { getDataInJson } from './utils.js';
-import { createMealCard } from './utils.js';
+import { API, getDataInJson, createMealCard, addLodeMoreBtn } from './utils.js';
 
 function createCategory(category) {
   const categoryContainer = document.createElement("div");
@@ -27,20 +25,6 @@ export async function renderMealsByCategory(category) {
   if (mealsByCategory.slice(9).length) {
     addLodeMoreBtn(wrapperCategories, mealsCategoryHtml.slice(9));
   }
-}
-
-function renderMoreMeals(restList, container, event) {
-  event.target.parentElement.remove();
-  const fragment = document.createDocumentFragment();
-  restList.slice(0, 9).forEach(cardMeal => fragment.appendChild(cardMeal));
-  container.appendChild(fragment);
-  if (restList.slice(9).length) addLodeMoreBtn(container, restList.slice(9));
-}
-
-function addLodeMoreBtn(refContainer, restMeals) {
-  const addMoreTemplate = document.querySelector('.meal').content.querySelector('.add__more').cloneNode(true);
-  addMoreTemplate.querySelector('button').addEventListener('click', (event) => renderMoreMeals(restMeals, refContainer, event));
-  refContainer.appendChild(addMoreTemplate);
 }
 
 export async function renderCategories() {

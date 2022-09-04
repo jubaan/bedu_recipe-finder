@@ -1,6 +1,6 @@
 // ES6 Modules
 import backArrowIcon from '../assets/icons/arrow-back.svg';
-import { API, getDataInJson, createMealCard } from './utils.js';
+import { API, getDataInJson, createMealCard, addLodeMoreBtn } from './utils.js';
 import { renderCategories, renderMealsByCategory } from './category.js';
 import Swal from 'sweetalert2';
 
@@ -68,20 +68,6 @@ function renderMealsFound(mealsList, container, defaultLayout) {
 
   cleanDOM(container);
   container.appendChild(sectionMeals);
-}
-
-function renderMoreMeals(restList, container, event) {
-  event.target.parentElement.remove();
-  const fragment = document.createDocumentFragment();
-  restList.slice(0, 9).forEach(cardMeal => fragment.appendChild(cardMeal));
-  container.appendChild(fragment);
-  if (restList.slice(9).length) addLodeMoreBtn(container, restList.slice(9));
-}
-
-function addLodeMoreBtn(refContainer, restMeals) {
-  const addMoreTemplate = document.querySelector('.meal').content.querySelector('.add__more').cloneNode(true);
-  addMoreTemplate.querySelector('button').addEventListener('click', (event) => renderMoreMeals(restMeals, refContainer, event));
-  refContainer.appendChild(addMoreTemplate);
 }
 
 function cleanDOM(container) {

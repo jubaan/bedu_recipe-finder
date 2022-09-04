@@ -1,11 +1,11 @@
-// ES6 Modules
+// Imports
 import backArrowIcon from '../assets/icons/arrow-back.svg';
 import { API, getDataInJson, createMealCard, addLodeMoreBtn } from './utils.js';
 import { renderCategories, renderMealsByCategory } from './category.js';
 import Swal from 'sweetalert2';
 
 
-
+// Search meal
 export async function search(text, container, defaultLayout) {
   try {
     renderLoader(container);
@@ -18,11 +18,17 @@ export async function search(text, container, defaultLayout) {
   }
 }
 
-
+// Handle the possible error in the API
 function handlerError(error) {
-  console.log(error)
+  Swal.fire({
+    title: 'Error',
+    titleText: 'Something happened',
+    text: error,
+    icon: 'error',
+  });
 }
 
+// Render the mealsFound in teh search
 function renderMealsFound(mealsList, container, defaultLayout) {
   const sectionMeals = document.createElement('section');
   sectionMeals.classList.add('meals');
@@ -45,7 +51,7 @@ function renderMealsFound(mealsList, container, defaultLayout) {
   const btnBackLayout = sectionMeals.querySelector('.meals__back-btn');
   btnBackLayout.addEventListener('click', () => backToDefaultLayout(container, defaultLayout));
 
-  // Add the meals found or show a message
+  // Add the meals found or show a message if there is no meals
   if (mealsList) {
     const mealsHtml = mealsList.map(meal => createMealCard(meal));
     mealsHtml.slice(0, 9).forEach(mealHtml => divMealsContainer.appendChild(mealHtml));
@@ -70,10 +76,12 @@ function renderMealsFound(mealsList, container, defaultLayout) {
   container.appendChild(sectionMeals);
 }
 
+// Clean DOM
 function cleanDOM(container) {
   container.innerHTML = '';
 }
 
+// Render the loader when search a meal
 function renderLoader(container) {
   cleanDOM(container);
   const spanLoader = document.createElement('span');
@@ -82,6 +90,7 @@ function renderLoader(container) {
   container.appendChild(spanLoader);
 }
 
+// Back to the initial layout
 function backToDefaultLayout(container, defaultLayout) {
   cleanDOM(container);
   container.innerHTML = defaultLayout;

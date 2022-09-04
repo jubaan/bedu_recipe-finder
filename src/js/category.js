@@ -1,5 +1,7 @@
+// Imports
 import { API, getDataInJson, createMealCard, addLodeMoreBtn } from './utils.js';
 
+// Create category by string parameter
 function createCategory(category) {
   const categoryContainer = document.createElement("div");
   categoryContainer.classList.add("category-card");
@@ -11,6 +13,7 @@ function createCategory(category) {
   return categoryContainer;
 }
 
+// Render the meals by category
 export async function renderMealsByCategory(category) {
   const urlByCategory = `${API.base}${API.filter}?c=${category}`;
   const { meals: mealsByCategory } = await getDataInJson(urlByCategory);
@@ -29,6 +32,7 @@ export async function renderMealsByCategory(category) {
   }
 }
 
+// Render categories
 export async function renderCategories() {
   const categorySection = document.querySelector("#categories-container");
 

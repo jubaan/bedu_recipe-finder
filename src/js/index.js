@@ -6,9 +6,9 @@ import randomImg from '../assets/images/random-icon.svg';
 import Swal from 'sweetalert2';
 
 
-// import for the js
+// import the js
 import { search } from './search.js';
-import { renderCategories, renderMealsByCategory } from './category.js';
+import { initRender } from './utils.js';
 
 // set the images
 const imageLogo = document.getElementById('logo')
@@ -40,6 +40,7 @@ inputMeals.addEventListener('keydown', (e) => {
 });
 
 
+// Handler the search
 function handlerSearch() {
   const textToSearch = inputMeals.value;
   if (!textToSearch) {
@@ -56,8 +57,5 @@ function handlerSearch() {
   search(textToSearch, container, defaultLayout);
 }
 
-// Get categories
-renderCategories()
-const initialCategory = 'beff';
-// Render the initial meals
-renderMealsByCategory('beef');
+// Init the render of the categories and the initial meals
+initRender();

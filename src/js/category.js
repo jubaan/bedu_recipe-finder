@@ -18,6 +18,8 @@ export async function renderMealsByCategory(category) {
   const { meals: mealsByCategory } = await getDataInJson(urlByCategory);
   const mealsCategoryHtml = mealsByCategory.map(meal => createMealCard(meal))
 
+  const titleCategory = document.querySelector('section.meals .title');
+  titleCategory.textContent = `Meals (${category})`;
   const wrapperCategories = document.querySelector(".meals-content");
   const fragment = document.createDocumentFragment();
   mealsCategoryHtml.forEach(cardMeal => fragment.appendChild(cardMeal));

@@ -113,7 +113,9 @@ export const generateModal = (meal) => {
   const ingredientContainer =
     mealModalTemplate.querySelector('.ingredients__list');
   const ingredients = getIngredients(meal).map((i) => {
-    return i.replace(/^\s+|\s+$/g, '') !== '' && i !== ' null' ? i : undefined;
+    return i.replace(/^\s+|\s+$/g, '') !== '' && i !== ' null' && i !== 'null null'
+      ? i
+      : undefined;
   });
   console.log(ingredients)
 

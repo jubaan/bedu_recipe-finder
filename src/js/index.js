@@ -65,3 +65,10 @@ randomButton.addEventListener('click', (e) => {
 
   getRandomMeal();
 });
+
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelector('.modal').remove();
+  }
+});

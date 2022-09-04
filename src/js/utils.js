@@ -14,6 +14,7 @@ export const API = {
   random: '/random.php',
   categories: '/categories.php',
   filter: '/filter.php',
+  lookUp: '/lookUp.php',
 };
 
 // Num of meals to load initially
@@ -47,7 +48,7 @@ export function createMealCard(meal) {
   templateCard.querySelector('img').alt = strMeal;
   templateCard.querySelector('p').textContent = strMeal;
   templateCard.addEventListener('click', () => {
-    generateModal(meal);
+    getMeal(meal);
   });
 
   return templateCard;
@@ -61,8 +62,9 @@ export function renderMoreMeals(restList, container, event) {
     .slice(0, NUM_MEALS_TO_LOAD)
     .forEach((cardMeal) => fragment.appendChild(cardMeal));
   container.appendChild(fragment);
-  if (restList.slice(NUM_MEALS_TO_LOAD).length)
+  if (restList.slice(NUM_MEALS_TO_LOAD).length) {
     addLodeMoreBtn(container, restList.slice(NUM_MEALS_TO_LOAD));
+  }
 }
 
 // Render the button to load more meals
@@ -71,6 +73,7 @@ export function addLodeMoreBtn(refContainer, restMeals) {
     .querySelector('.meal')
     .content.querySelector('.add__more')
     .cloneNode(true);
+  
   addMoreTemplate
     .querySelector('button')
     .addEventListener('click', (event) =>
@@ -87,6 +90,15 @@ export const getRandomMeal = async () => {
   generateModal(randomMeal);
 
   return randomMeal;
+};
+
+export const getMeal = async (meal) => {
+  const url = `${API.base}${API.lookUp}?i=${meal.idMeal}`;
+  const retrievedMeal = (await getDataInJson(url)).meals[0];
+
+  generateModal(retrievedMeal);
+
+  return retrievedMeal;
 };
 
 export const generateModal = (meal) => {
@@ -107,7 +119,8 @@ export const generateModal = (meal) => {
       ingredient !== ' ' ||
       ingredient !== '   ' ||
       ingredient !== '' ||
-      (ingredient !== 'null' || ingredient !== 'null null')
+      ingredient !== 'null' ||
+      ingredient !== 'null null'
     ) {
       let ingredientLi = document.createElement('li');
       ingredientLi.textContent = ingredient;

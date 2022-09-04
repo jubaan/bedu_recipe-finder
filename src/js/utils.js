@@ -73,7 +73,7 @@ export function addLodeMoreBtn(refContainer, restMeals) {
     .querySelector('.meal')
     .content.querySelector('.add__more')
     .cloneNode(true);
-  
+
   addMoreTemplate
     .querySelector('button')
     .addEventListener('click', (event) =>
@@ -112,16 +112,14 @@ export const generateModal = (meal) => {
 
   const ingredientContainer =
     mealModalTemplate.querySelector('.ingredients__list');
+  const ingredients = getIngredients(meal).map((i) => {
+    return i.replace(/^\s+|\s+$/g, '') !== '' && i !== ' null' ? i : undefined;
+  });
+  console.log(ingredients)
 
   ingredientContainer.innerHTML = '';
-  getIngredients(meal).forEach((ingredient) => {
-    if (
-      ingredient !== ' ' ||
-      ingredient !== '   ' ||
-      ingredient !== '' ||
-      ingredient !== 'null' ||
-      ingredient !== 'null null'
-    ) {
+  ingredients.forEach((ingredient) => {
+    if (ingredient !== undefined) {
       let ingredientLi = document.createElement('li');
       ingredientLi.textContent = ingredient;
       ingredientContainer.appendChild(ingredientLi);

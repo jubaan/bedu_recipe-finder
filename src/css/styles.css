@@ -92,17 +92,23 @@ header {
 }
 
 .category-card-container {
-  display: grid;
-  grid-template: auto / repeat(3, 33.3%);
+  display: flex;
+  overflow: auto;
+  flex-flow: row nowrap;
+  scroll-snap-type: x proximity;
 }
 
 .category-card {
+  width: 30%;
+  text-align: center;
+  scroll-snap-align: center;
+  flex: none;
   position: relative;
   margin: 10px;
   padding: 0.5rem;
   text-align: center;
   color: var(--white-color);
-  background-color: #E64848;
+  background-color: var(--secondary-color);
   border-radius: 5px;
   box-shadow: 0 5px 5px var(--light-gray-color);
   cursor: pointer;
@@ -120,12 +126,6 @@ header {
   left: 50%;
   top: 35%;
   transform: translate(-50%, -50%);
-}
-
-.categories-btn-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* ------------------------- MEALS STYLES ------------------------- */
@@ -316,26 +316,12 @@ footer p {
 @media (max-width: 500px) {
 
   /* Slider */
-  .category-card-container {
-    display: flex;
-    overflow: auto;
-    flex-flow: row nowrap;
-    scroll-snap-type: x proximity;
-  }
-
   .category-card {
     width: 90%;
-    text-align: center;
-    scroll-snap-align: center;
-    flex: none;
   }
 
   .category-card p {
     font-size: 2rem;
-  }
-
-  .categories-btn {
-    display: none;
   }
 
   .search-bar input {

@@ -19,7 +19,7 @@
 
             <div class="navbar-btns">
                <div class="navbar-item search-bar">
-                  <input type="text" placeholder="I want to eat...">
+                  <input type="text" placeholder="I want to eat..." id="input-meals">
                   <button class="navbar-btn btn-search">
                      <img class="navbar-icon" id="searchIcon" alt="search icon">
                   </button>
@@ -38,27 +38,10 @@
 
       <!--START OF MAIN SECTION-->
       <main>
-
          <!--START OF CATEGORIES SECTION-->
-         <section class="categories-section">
+         <section class="categories-section" id="categories-container">
             <h2 class="title">Categories</h2>
-
-            <div class="category-card-container">
-               <div class="category-card">
-                  <img src="https://www.themealdb.com/images/category/side.png" alt="side">
-                  <p>Side</p>
-               </div>
-
-               <div class="category-card">
-                  <img src="https://www.themealdb.com/images/category/breakfast.png" alt="breakfast">
-                  <p>Breakfast</p>
-               </div>
-
-               <div class="category-card">
-                  <img src="https://www.themealdb.com/images/category/seafood.png" alt="seafood">
-                  <p>Seafood</p>
-               </div>
-            </div>
+            <!-- GET CATEGORIES FROM API -->
          </section>
          <!--END OF CATEGORIES SECTION-->
 
@@ -119,57 +102,8 @@
                <p>Come hungry, leave happy</p>
             </div>
          </section>
-
-         <section class="meals">
-            <div class="meals-content">
-               <article class="meals-card">
-                  <figure>
-                     <img src="https://www.themealdb.com/images/media/meals/1525876468.jpg" alt="wontons">
-                  </figure>
-                  <p>WONTONS</p>
-               </article>
-
-               <article class="meals-card">
-                  <figure>
-                     <img src="https://www.themealdb.com/images/media/meals/t8mn9g1560460231.jpg"
-                        alt="tunisian lamb soup">
-                  </figure>
-                  <p>TUNISIAN LAMB SOUP</p>
-               </article>
-
-               <article class="meals-card">
-                  <figure>
-                     <img src="https://www.themealdb.com/images/media/meals/xxyupu1468262513.jpg"
-                        alt="honey teriyaki salmon">
-                  </figure>
-                  <p>HONEY TERIYAKI SALMON</p>
-               </article>
-
-               <article class="meals-card">
-                  <figure>
-                     <img src="https://www.themealdb.com/images/media/meals/1525876468.jpg" alt="wontons">
-                  </figure>
-                  <p>WONTONS</p>
-               </article>
-
-               <article class="meals-card">
-                  <figure>
-                     <img src="https://www.themealdb.com/images/media/meals/t8mn9g1560460231.jpg"
-                        alt="tunisian lamb soup">
-                  </figure>
-                  <p>TUNISIAN LAMB SOUP</p>
-               </article>
-
-               <article class="meals-card">
-                  <figure>
-                     <img src="https://www.themealdb.com/images/media/meals/xxyupu1468262513.jpg"
-                        alt="honey teriyaki salmon">
-                  </figure>
-                  <p>HONEY TERIYAKI SALMON</p>
-               </article>
-            </div>
-         </section>
          <!--END OF MEALS SECTION-->
+
       </main>
       <!--END OF MAIN SECTION-->
       <!--START OF FOOTER-->

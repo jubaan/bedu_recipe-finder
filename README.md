@@ -8,6 +8,8 @@
 - [Marcela Contreras](https://github.com/proxyz100/)
 - [Maribel Melendez](https://github.com/marmelendez)
 
+## Version en vivo del recetario
+- Netlify [https://delicate-cassata-f669ee.netlify.app](https://delicate-cassata-f669ee.netlify.app)
 ##  Descripción
 Esta página web:
 1. Cuenta con un espacio para ingresar texto y un boton de busqueda.

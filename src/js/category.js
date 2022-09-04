@@ -1,6 +1,4 @@
-import { API } from './utils.js';
-import { getDataInJson } from './utils.js';
-import { createMealCard } from './utils.js';
+import { API, getDataInJson, createMealCard, addLodeMoreBtn } from './utils.js';
 
 function createCategory(category) {
   const categoryContainer = document.createElement("div");
@@ -22,9 +20,13 @@ export async function renderMealsByCategory(category) {
   titleCategory.textContent = `Meals (${category})`;
   const wrapperCategories = document.querySelector(".meals-content");
   const fragment = document.createDocumentFragment();
-  mealsCategoryHtml.forEach(cardMeal => fragment.appendChild(cardMeal));
+  mealsCategoryHtml.slice(0, 9).forEach(cardMeal => fragment.appendChild(cardMeal));
   wrapperCategories.innerHTML = "";
   wrapperCategories.appendChild(fragment);
+
+  if (mealsByCategory.slice(9).length) {
+    addLodeMoreBtn(wrapperCategories, mealsCategoryHtml.slice(9));
+  }
 }
 
 export async function renderCategories() {

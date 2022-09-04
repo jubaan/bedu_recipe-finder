@@ -1,6 +1,6 @@
 // ES6 Modules
 import backArrowIcon from '../assets/icons/arrow-back.svg';
-import { API, getDataInJson, createMealCard } from './utils.js';
+import { API, getDataInJson, createMealCard, addLodeMoreBtn } from './utils.js';
 import { renderCategories, renderMealsByCategory } from './category.js';
 import Swal from 'sweetalert2';
 
@@ -48,7 +48,8 @@ function renderMealsFound(mealsList, container, defaultLayout) {
   // Add the meals found or show a message
   if (mealsList) {
     const mealsHtml = mealsList.map(meal => createMealCard(meal));
-    mealsHtml.forEach(mealHtml => divMealsContainer.appendChild(mealHtml));
+    mealsHtml.slice(0, 9).forEach(mealHtml => divMealsContainer.appendChild(mealHtml));
+    if (mealsHtml.slice(9).length) addLodeMoreBtn(divMealsContainer, mealsHtml.slice(9));
   }
   else {
     const pMessage = document.createElement('p');

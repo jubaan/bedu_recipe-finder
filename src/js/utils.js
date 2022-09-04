@@ -1,3 +1,4 @@
+import arrowDownIcon from '../assets/icons/load-more.svg';
 export const API = {
   base: 'https://www.themealdb.com/api/json/v1/1',
   search: '/search.php',
@@ -5,6 +6,8 @@ export const API = {
   categories: '/categories.php',
   filter: '/filter.php'
 }
+
+const NUM_MEALS_TO_LOAD = 9;
 
 export function getDataInJson(url) {
   return fetch(url)
@@ -20,4 +23,19 @@ export function createMealCard(meal) {
   templateCard.querySelector('img').alt = strMeal;
   templateCard.querySelector('p').textContent = strMeal;
   return templateCard;
+}
+
+export function renderMoreMeals(restList, container, event) {
+  event.target.parentElement.remove();
+  const fragment = document.createDocumentFragment();
+  restList.slice(0, NUM_MEALS_TO_LOAD).forEach(cardMeal => fragment.appendChild(cardMeal));
+  container.appendChild(fragment);
+  if (restList.slice(NUM_MEALS_TO_LOAD).length) addLodeMoreBtn(container, restList.slice(NUM_MEALS_TO_LOAD));
+}
+
+export function addLodeMoreBtn(refContainer, restMeals) {
+  const addMoreTemplate = document.querySelector('.meal').content.querySelector('.add__more').cloneNode(true);
+  addMoreTemplate.querySelector('button').addEventListener('click', (event) => renderMoreMeals(restMeals, refContainer, event));
+  addMoreTemplate.querySelector('img').src = arrowDownIcon;
+  refContainer.appendChild(addMoreTemplate);
 }

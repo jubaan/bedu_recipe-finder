@@ -1,36 +1,43 @@
-import { API } from './utils.js';
-import { getDataInJson } from './utils.js';
-import { createMealCard } from './utils.js';
+// Imports
+import { API, getDataInJson, createMealCard, addLodeMoreBtn } from './utils.js';
 
-// CATEGORIES SECTON
-const categorySection = document.querySelector("#categories-container");
-
+// Create category by string parameter
 function createCategory(category) {
   const categoryContainer = document.createElement("div");
-  categoryContainer.classList.add("category-card"); 
+  categoryContainer.classList.add("category-card");
   categoryContainer.innerHTML = `
     <img src="${category.strCategoryThumb}" alt="${category.strCategory}">
     <p>${category.strCategory}</p>`;
-  
-  categoryContainer.addEventListener("click", ()=> loadCategories(category.strCategory));
-  return categoryContainer; 
+
+  categoryContainer.addEventListener("click", () => renderMealsByCategory(category.strCategory));
+  return categoryContainer;
 }
 
-async function loadCategories(category){
-  const urlByCategory = `${API.base}${API.filter}?c=${category}`; 
-  const {meals: mealsByCategory} = await getDataInJson(urlByCategory); 
+// Render the meals by category
+export async function renderMealsByCategory(category) {
+  const urlByCategory = `${API.base}${API.filter}?c=${category}`;
+  const { meals: mealsByCategory } = await getDataInJson(urlByCategory);
   const mealsCategoryHtml = mealsByCategory.map(meal => createMealCard(meal))
+
+  const titleCategory = document.querySelector('section.meals .title');
+  titleCategory.textContent = `Meals (${category})`;
   const wrapperCategories = document.querySelector(".meals-content");
-  wrapperCategories.innerHTML = ""; 
   const fragment = document.createDocumentFragment();
-  mealsCategoryHtml.forEach(cardMeal => fragment.appendChild(cardMeal));
+  mealsCategoryHtml.slice(0, 9).forEach(cardMeal => fragment.appendChild(cardMeal));
+  wrapperCategories.innerHTML = "";
   wrapperCategories.appendChild(fragment);
 
+  if (mealsByCategory.slice(9).length) {
+    addLodeMoreBtn(wrapperCategories, mealsCategoryHtml.slice(9));
+  }
 }
 
+// Render categories
 export async function renderCategories() {
-    const url =  `${API.base}${API.categories}`;
-    const data = await getDataInJson(url);
+  const categorySection = document.querySelector("#categories-container");
+
+  const url = `${API.base}${API.categories}`;
+  const data = await getDataInJson(url);
 
   const categoriesHtml = data.categories.map((item) => {
     return createCategory(item);

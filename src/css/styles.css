@@ -84,6 +84,16 @@ header {
   border-radius: 0 5px 5px 0;
 }
 
+/*------------------------ Principal meals container --------------------*/
+main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
 /* ---------------------------- CATEGORIES STYLE ---------------------------- */
 .categories-section {
   width: 85%;
@@ -138,6 +148,7 @@ figure {
   max-width: 1000px;
   margin: 0 auto;
   margin-top: 30px;
+  min-height: 70vh;
 }
 
 .title {
@@ -150,7 +161,6 @@ figure {
 .meals-content {
   display: grid;
   grid-template: auto / repeat(3, 33.3%);
-  align-items: center;
 }
 
 .meals-card {
@@ -207,7 +217,7 @@ figure {
 
 /* ------------------------- FOOTER STYLES ------------------------- */
 footer {
-  margin-top: 8%;
+  margin-top: 3%;
   background-color: var(--primary-color);
   height: 113px;
   width: 100%;
@@ -327,7 +337,7 @@ footer p {
 
   /* Meals */
   .meals-content {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 50%);
   }
 }
 
@@ -337,6 +347,10 @@ footer p {
   /* Slider */
   .category-card {
     width: 90%;
+  }
+
+  .category-card-container {
+    scroll-snap-type: x mandatory;
   }
 
   .category-card p {
@@ -353,6 +367,7 @@ footer p {
     margin-bottom: 0px;
   }
 
+  /* Meals */
   .meals-content {
     display: flex;
     flex-direction: column;
@@ -375,4 +390,165 @@ footer p {
     column-count: 2;
   }
 
+}
+
+
+
+
+/* Styles for dynamic components */
+/* Loader Styles */
+.loader {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 4px solid #FFF;
+  border-right: 4px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border-left: 4px solid var(--secondary-color);
+  border-bottom: 4px solid transparent;
+  animation: rotation 0.5s linear infinite reverse;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Skeleton animation */
+.skeleton {
+  min-width: 2rem;
+  min-height: 2rem;
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading  {
+  0%{
+    background-color: hsl(200, 20%, 70%);
+  }
+
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
+/* Meals results */
+
+.meals__results-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.meals__results-info h2 {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+
+.meals__back-btn {
+  min-width: 100px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 10px;
+  margin-right: 5px;
+  border-radius: 10em;
+  border: 0;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  position: relative;
+  overflow: hidden;
+  transition: all ease-in 250ms;
+}
+.meals__back-btn:active,
+.meals__back-btn:hover {
+  opacity: 0.75;
+  justify-content: space-between;
+  background-color: var(--secondary-color);
+}
+
+.meals__back-btn:hover span {
+  transform: translateX(0px);
+}
+
+.meals__back-btn:hover img {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.meals__back-btn span {
+  transform: translateX(10px);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  transition: all 250ms ease-in-out;
+}
+
+.meals__back-btn img {
+  max-width: 100%;
+  width: 25%;
+  transform: translateX(-100px);
+  opacity: 0;
+  transition: all ease-in 250ms;
+}
+
+/* Message results not found */
+.results__message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.6rem;
+}
+
+/* Load More */
+.add__more {
+  margin-top: 10px;
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+}
+
+.add__more-btn {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 0;
+  cursor: pointer;
+}
+
+.add__more-btn span {
+  font-family: 'Nunito', sans-serif;
+}
+
+.add__more-btn img {
+  max-width: 100%;
+  width: 50%;
+  animation: jump infinite alternate 1000ms;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }

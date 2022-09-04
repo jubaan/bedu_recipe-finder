@@ -1,3 +1,9 @@
+const mealModalTemplate = document
+  .querySelector('.meal')
+  .content.querySelector('.modal')
+  .cloneNode(true);
+const body = document.body;
+
 export const API = {
   base: 'https://www.themealdb.com/api/json/v1/1',
   search: '/search.php',
@@ -22,61 +28,80 @@ export function createMealCard(meal) {
   mealCard.querySelector('img').src = strMealThumb;
   mealCard.querySelector('img').alt = strMeal;
   mealCard.querySelector('p').textContent = strMeal;
+  mealCard.addEventListener('click', () => {
+    generateModal(meal)
+  });
 
   return mealCard;
 }
 
+export const getRandomMeal = async () => {
+  const randomUrl = `${API.base}${API.random}`;
+  const randomMeal = (await getDataInJson(randomUrl)).meals[0];
 
-{/* <div class="modal">
-  <div class="meal">
-    <div
-      class="meal__image"
-      style="background-image: url(https://www.themealdb.com/images/media/meals/1550441882.jpg);"
-    >
-      <div class="meal__closing-button"></div>
-    </div>
-    <div class="meal__details">
-      <div class="meal__title">
-        <h2 class="meal__name"></h2>
-      </div>
-      <div class="meal__ingredients">
-        <h2 class="ingredients__title">Ingredients</h2>
-        <ul class="ingredients__list">
-          <li class="ingredient">Potatoes</li>
-          <li class="ingredient">Olive Oil</li>
-          <li class="ingredient">Bacon</li>
-          <li class="ingredient">Garlic Clove</li>
-          <li class="ingredient">Maple Syrup</li>
-          <li class="ingredient">Parsley</li>
-          <li class="ingredient">Salt</li>
-          <li class="ingredient">Pepper</li>
-          <li class="ingredient">Allspice</li>
-        </ul>
-      </div>
+  generateModal(randomMeal);
 
-      <div class="meal__instructions">
-        <h2 class="instructions__title">Instructions</h2>
-        <p class="meal__preparation-instructions"></p>
-      </div>
-    </div>
-  </div>
-</div>;
+  return randomMeal;
+};
 
-export function createModalCard(meal) {
-  const modalCard = document
-    .querySelector('.meal')
-    .content.querySelector('.modal')
-    .cloneNode(true);
-  
+export const generateModal = (meal) => {
+  mealModalTemplate.querySelector(
+    '.meal__image'
+  ).style.backgroundImage = `url('${meal.strMealThumb}`;
+  mealModalTemplate.querySelector('.meal__name').textContent = meal.strMeal;
+  mealModalTemplate.querySelector(
+    '.meal__preparation-instructions'
+  ).textContent = meal.strInstructions;
 
-  modalCard.querySelector('.meal__name').textContent = meal.strMeal;
-  modalCard.querySelector('.meal__preparation-instructions').textContent = meal.strInstructions;
-  modalCard.querySelector('img').alt = strMeal;
-  modalCard.querySelector('p').textContent = strMeal;
-  console.log(modalCard);
-  return modalCard;
-}
+  const ingredientContainer =
+    mealModalTemplate.querySelector('.ingredients__list');
+  getIngredients(meal).forEach((ingredient) => {
+    if (
+      ingredient &&
+      ingredient !== ' ' &&
+      ingredient !== '' &&
+      !!ingredient &&
+      (ingredient !== 'null' || ingredient !== 'null null')
+    ) {
+      let ingredientLi = document.createElement('li');
+      ingredientLi.textContent = ingredient;
+      ingredientContainer.appendChild(ingredientLi);
+    }
+  });
 
-export function getAllIngredients(meal) {
-  meal.map
-} */}
+  const closeButton = mealModalTemplate.querySelector('.close__button');
+
+  closeButton.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    e.target.parentElement.parentElement.parentElement.parentElement.remove();
+  });
+
+  body.append(mealModalTemplate);
+};
+
+export const getIngredients = (meal) => {
+  const ingredients = [
+    `${meal.strMeasure1} ${meal.strIngredient1}`,
+    `${meal.strMeasure2} ${meal.strIngredient2}`,
+    `${meal.strMeasure3} ${meal.strIngredient3}`,
+    `${meal.strMeasure4} ${meal.strIngredient4}`,
+    `${meal.strMeasure5} ${meal.strIngredient5}`,
+    `${meal.strMeasure6} ${meal.strIngredient6}`,
+    `${meal.strMeasure7} ${meal.strIngredient7}`,
+    `${meal.strMeasure8} ${meal.strIngredient8}`,
+    `${meal.strMeasure9} ${meal.strIngredient9}`,
+    `${meal.strMeasure10} ${meal.strIngredient10}`,
+    `${meal.strMeasure11} ${meal.strIngredient11}`,
+    `${meal.strMeasure12} ${meal.strIngredient12}`,
+    `${meal.strMeasure13} ${meal.strIngredient13}`,
+    `${meal.strMeasure14} ${meal.strIngredient14}`,
+    `${meal.strMeasure15} ${meal.strIngredient15}`,
+    `${meal.strMeasure16} ${meal.strIngredient16}`,
+    `${meal.strMeasure17} ${meal.strIngredient17}`,
+    `${meal.strMeasure18} ${meal.strIngredient18}`,
+    `${meal.strMeasure19} ${meal.strIngredient19}`,
+    `${meal.strMeasure20} ${meal.strIngredient20}`,
+  ];
+  return ingredients;
+};

@@ -117,8 +117,7 @@ export const generateModal = (meal) => {
       ? i
       : undefined;
   });
-  console.log(ingredients)
-
+  
   ingredientContainer.innerHTML = '';
   ingredients.forEach((ingredient) => {
     if (ingredient !== undefined) {

@@ -1,0 +1,100 @@
+// Imports
+import backArrowIcon from '../assets/icons/arrow-back.svg';
+import { API, getDataInJson, createMealCard, addLodeMoreBtn } from './utils.js';
+import { renderCategories, renderMealsByCategory } from './category.js';
+import Swal from 'sweetalert2';
+
+
+// Search meal
+export async function search(text, container, defaultLayout) {
+  try {
+    renderLoader(container);
+    const searchUrl = `${API.base}${API.search}?s=${text}`;
+    const { meals: mealsFound } = await getDataInJson(searchUrl);
+    renderMealsFound(mealsFound, container, defaultLayout);
+
+  } catch (error) {
+    handlerError(error);
+  }
+}
+
+// Handle the possible error in the API
+function handlerError(error) {
+  Swal.fire({
+    title: 'Error',
+    titleText: 'Something happened',
+    text: error,
+    icon: 'error',
+  });
+}
+
+// Render the mealsFound in teh search
+function renderMealsFound(mealsList, container, defaultLayout) {
+  const sectionMeals = document.createElement('section');
+  sectionMeals.classList.add('meals');
+
+  const divInfo = document.createElement('div');
+  divInfo.classList.add('meals__results-info');
+  divInfo.innerHTML = `
+    <h2 class="title">Search Results</h2>
+    <button class="meals__back-btn" aria-label="Back to the begin page state">
+      <span>Back</span>
+      <img src="${backArrowIcon}" alt="Back to the default layout"/>
+    </button>
+  `;
+  const divMealsContainer = document.createElement('div');
+  divMealsContainer.classList.add('meals-content');
+
+  sectionMeals.append(divInfo, divMealsContainer);
+
+  // Listener to get back into the initial layout
+  const btnBackLayout = sectionMeals.querySelector('.meals__back-btn');
+  btnBackLayout.addEventListener('click', () => backToDefaultLayout(container, defaultLayout));
+
+  // Add the meals found or show a message if there is no meals
+  if (mealsList) {
+    const mealsHtml = mealsList.map(meal => createMealCard(meal));
+    mealsHtml.slice(0, 9).forEach(mealHtml => divMealsContainer.appendChild(mealHtml));
+    if (mealsHtml.slice(9).length) addLodeMoreBtn(divMealsContainer, mealsHtml.slice(9));
+  }
+  else {
+    const pMessage = document.createElement('p');
+    pMessage.classList.add('results__message');
+    pMessage.textContent = 'No results found';
+    divMealsContainer.appendChild(pMessage);
+    Swal.fire({
+      title: 'Make sure you are writing well your search',
+      toast: true,
+      position: 'top-end',
+      timer: 2000,
+      icon: 'info',
+      showConfirmButton: false,
+    });
+  }
+
+  cleanDOM(container);
+  container.appendChild(sectionMeals);
+}
+
+// Clean DOM
+function cleanDOM(container) {
+  container.innerHTML = '';
+}
+
+// Render the loader when search a meal
+function renderLoader(container) {
+  cleanDOM(container);
+  const spanLoader = document.createElement('span');
+  spanLoader.classList.add('loader');
+
+  container.appendChild(spanLoader);
+}
+
+// Back to the initial layout
+function backToDefaultLayout(container, defaultLayout) {
+  cleanDOM(container);
+  container.innerHTML = defaultLayout;
+  renderCategories();
+  renderMealsByCategory('beef');
+  document.querySelector('#input-meals').value = '';
+}

@@ -1,0 +1,555 @@
+@import './normalize.css';
+@import './global.css';
+
+/* ------------------------- GLOBAL STYLES ------------------------- */
+
+body {
+  background-color: var(--light-blue-color);
+}
+
+.wrapper {
+  min-width: 320px;
+}
+
+/* ------------------------- HEADER STYLES ------------------------- */
+header {
+  background: var(--primary-color);
+}
+
+.navbar {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  max-width: 1000px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-item {
+  margin: 5px;
+}
+
+.navbar figure {
+  width: 25%;
+  min-width: 200px;
+  margin: 0;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+}
+
+.navbar-btns,
+.search-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar-btns {
+  align-items: center;
+}
+
+.navbar-btn {
+  color: var(--white-color);
+  background: var(--secondary-color);
+  height: 34px;
+  border-radius: 5px;
+  border-style: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.random-text {
+  margin: 0;
+}
+
+.navbar-icon {
+  fill: var(--white-color);
+  height: 100%;
+}
+
+.search-bar input {
+  border-radius: 5px 0 0 5px;
+  border-style: none;
+  width: 300px;
+  padding: 0 8px;
+}
+
+.btn-search {
+  border-radius: 0 5px 5px 0;
+}
+
+/*------------------------ Principal meals container --------------------*/
+main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+/* ---------------------------- CATEGORIES STYLE ---------------------------- */
+.categories-section {
+  width: 85%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.category-card-container {
+  display: flex;
+  overflow: auto;
+  flex-flow: row nowrap;
+  scroll-snap-type: x proximity;
+}
+
+.category-card {
+  width: 30%;
+  text-align: center;
+  scroll-snap-align: center;
+  flex: none;
+  position: relative;
+  margin: 10px;
+  padding: 0.5rem;
+  text-align: center;
+  color: var(--white-color);
+  background-color: var(--secondary-color);
+  border-radius: 5px;
+  box-shadow: 0 5px 5px var(--light-gray-color);
+  cursor: pointer;
+}
+
+.category-card img {
+  width: 100%;
+  filter: contrast(50%);
+}
+
+.category-card p {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.5em;
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%, -50%);
+}
+
+/* ------------------------- MEALS STYLES ------------------------- */
+figure {
+  margin: 0;
+}
+
+.meals {
+  width: 85%;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 30px;
+  min-height: 70vh;
+}
+
+.title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 24px;
+  color: var(--dark-gray-color);
+  margin-left: 10px;
+}
+
+.meals-content {
+  display: grid;
+  grid-template: auto / repeat(3, 33.3%);
+}
+
+.meals-card {
+  background-color: var(--white-color);
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 5px 5px var(--light-gray-color);
+  cursor: pointer;
+}
+
+.meals-card p {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 14px;
+  color: var(--black-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.meals-card img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* ------------------------- SLOGAN STYLES ------------------------- */
+.slogan-container {
+  max-width: 1000px;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.slogan {
+  height: 119px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(155, 155, 155, 0.7)), url(https://www.themealdb.com/images/media/meals/t8mn9g1560460231.jpg) no-repeat;
+  background-position: center center;
+  background-size: cover;
+  border: solid var(--white-color) 4px;
+}
+
+.slogan p {
+  color: var(--white-color);
+  font-size: 36px;
+  font-family: 'Neucha', cursive;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ------------------------- FOOTER STYLES ------------------------- */
+footer {
+  margin-top: 3%;
+  background-color: var(--primary-color);
+  height: 113px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+footer img {
+  font-family: 'Neucha', cursive;
+}
+
+footer p {
+  font-size: 12px;
+  font-family: 'Neucha', cursive;
+}
+
+/* Start Meal Modal */
+
+.hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 100%;
+  overflow: scroll;
+}
+
+.meal {
+  max-width: 700px;
+  background-color: var(--white-color);
+  height: auto;
+  width: 80%;
+  margin: 15% auto 0;
+  border-radius: 5px;
+  padding: 15px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.meal__image {
+  width: 100%;
+  height: 250px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 5px;
+  position: relative;
+}
+
+.meal__title {
+  background-color: var(--tertiary-color);
+  padding: 7px;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
+.meal__name {
+  font-family: 'Pacifico', cursive;
+  color: var(--white-color);
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.meal {
+  overflow: scroll;
+}
+
+.ingredients__list {
+  column-count: 3;
+}
+
+.close__button {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  background-color: var(--white-color);
+  border: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  top: 15px;
+  right: 15px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+
+/* End Meal Modal */
+
+/* ------------------------- MEDIA QUERIES ------------------------- */
+/* Mobile */
+@media (max-width: 768px) {
+
+  /* NavBar */
+  .navbar {
+    flex-direction: column;
+  }
+
+  .random-text {
+    display: none;
+  }
+
+  /* Meals */
+  .meals-content {
+    grid-template-columns: repeat(2, 50%);
+  }
+}
+
+/* If width is equal or less than 500px apply these styles */
+@media (max-width: 500px) {
+
+  /* Slider */
+  .category-card {
+    width: 75%;
+  }
+
+  .category-card-container {
+    scroll-snap-type: x mandatory;
+  }
+
+  .category-card p {
+    font-size: 2rem;
+  }
+
+  .search-bar input {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 20px;
+    margin-left: 22px;
+    margin-bottom: 0px;
+  }
+
+  /* Meals */
+  .meals-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .meals-card {
+    margin: 20px;
+  }
+
+  .meals-card p {
+    font-size: 18px;
+  }
+
+  .slogan p {
+    font-size: 22px;
+  }
+
+  /* Start Modal Meal */
+  .ingredients__list {
+    column-count: 2;
+  }
+
+}
+
+
+
+
+/* Styles for dynamic components */
+/* Loader Styles */
+.loader {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 4px solid #FFF;
+  border-right: 4px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border-left: 4px solid var(--secondary-color);
+  border-bottom: 4px solid transparent;
+  animation: rotation 0.5s linear infinite reverse;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Skeleton animation */
+.skeleton {
+  min-width: 2rem;
+  min-height: 2rem;
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading  {
+  0%{
+    background-color: hsl(200, 20%, 70%);
+  }
+
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
+/* Meals results */
+
+.meals__results-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.meals__results-info h2 {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+
+.meals__back-btn {
+  min-width: 100px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 10px;
+  margin-right: 5px;
+  border-radius: 10em;
+  border: 0;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  position: relative;
+  overflow: hidden;
+  transition: all ease-in 250ms;
+}
+.meals__back-btn:active,
+.meals__back-btn:hover {
+  opacity: 0.75;
+  justify-content: space-between;
+  background-color: var(--secondary-color);
+}
+
+.meals__back-btn:hover span {
+  transform: translateX(0px);
+}
+
+.meals__back-btn:hover img {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.meals__back-btn span {
+  transform: translateX(10px);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  transition: all 250ms ease-in-out;
+}
+
+.meals__back-btn img {
+  max-width: 100%;
+  width: 25%;
+  transform: translateX(-100px);
+  opacity: 0;
+  transition: all ease-in 250ms;
+}
+
+/* Message results not found */
+.results__message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.6rem;
+}
+
+/* Load More */
+.add__more {
+  margin-top: 10px;
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+}
+
+.add__more-btn {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 0;
+  cursor: pointer;
+}
+
+.add__more-btn span {
+  font-family: 'Nunito', sans-serif;
+}
+
+.add__more-btn img {
+  max-width: 100%;
+  width: 50%;
+  animation: jump infinite alternate 1000ms;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

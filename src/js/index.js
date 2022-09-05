@@ -3,7 +3,7 @@ import '../css/styles.css'; //import the css file
 import logo from '../assets/images/logoRecipeEasy.svg'; //import the logo image
 import searchImg from '../assets/images/search-icons.svg'; //import the search image
 import randomImg from '../assets/images/random-icon.svg';
-import { getRandomMeal } from './utils'
+import { getRandomMeal } from './randomMeal.js'
 import Swal from 'sweetalert2';
 
 
@@ -60,6 +60,8 @@ function handlerSearch() {
 // Init the render of the categories and the initial meals
 initRender();
 
+
+// Events to get a random meal
 randomButton.addEventListener('click', (e) => {
   e.preventDefault();
 
@@ -70,5 +72,7 @@ randomButton.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     document.querySelector('.modal').remove();
+    // Appear the scroll from the body
+    document.body.style.overflow = 'auto';
   }
 });

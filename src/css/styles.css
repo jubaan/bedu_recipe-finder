@@ -261,6 +261,7 @@ footer p {
 }
 
 .meal {
+  max-width: 700px;
   background-color: var(--white-color);
   height: auto;
   width: 80%;
